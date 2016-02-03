@@ -37,7 +37,7 @@ class SegmentTree
     # Node constructor, accepts both +Node+ and +Segment+
     def initialize(left, right)
       @left, @right = left, right
-      @range = left.begin..(right || left).end
+      @range = left.begin..(right ? left.end>right.end ? left : right : left).end
 
       super
     end
@@ -58,7 +58,9 @@ class SegmentTree
 
     # Do not expose left and right, otherwise output shall be too long on large trees
     def inspect
-      "#<#{self.class.name}:0x#{object_id.to_s(16)} @range=#{@range.inspect}>"
+      "\nrange : "+@range.inspect+
+      "\t LEFT : \n\t"+@left.inspect+
+      "\t Right : \n\t"+@right.inspect
     end
   end
 
